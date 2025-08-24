@@ -1,0 +1,47 @@
+/* ========================================
+   SCROLLBAR MODERNE GLOBALE
+   S'applique automatiquement à toutes les balises
+   ======================================== */
+
+/* Style global pour toutes les scrollbars */
+* {
+    /* Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: #3b82f6 rgba(243, 244, 246, 0.3);
+}
+
+/* WebKit (Chrome, Safari, Edge) */
+*::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+}
+
+*::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: scale(1.1);
+}
+
+*::-webkit-scrollbar-thumb:active {
+    background: linear-gradient(135deg, #1d4ed8, #6d28d9);
+}
+
+*::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+
+@import "tailwindcss";
