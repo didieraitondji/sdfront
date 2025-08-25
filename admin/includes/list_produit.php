@@ -271,7 +271,7 @@ sort($categories); // Tri alphabétique des catégories
         }
 
         // Remplir la catégorie
-        document.getElementById('modalProductCategory').textContent = produit.categorie_nom || 'Non catégorisé';
+        document.getElementById('modalProductCategory').textContent = produit.categorie.c_name || 'Non catégorisé';
 
         // Remplir le stock
         const stockContainer = document.getElementById('modalProductStock');
@@ -298,7 +298,7 @@ sort($categories); // Tri alphabétique des catégories
 
         // Remplir le statut
         const statusContainer = document.getElementById('modalProductStatus');
-        if (produit.p_status === 'actif') {
+        if (produit.p_status === 'Disponible') {
             statusContainer.className = 'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800';
             statusContainer.innerHTML = '<i class="fas fa-check-circle mr-1"></i>Disponible';
         } else {

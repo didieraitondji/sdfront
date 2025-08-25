@@ -2,7 +2,7 @@
 <div id="productModal" class="hidden cursor-pointer fixed inset-0 z-50 items-center justify-center p-4" style="background-color: rgba(0, 0, 0, 0.5);">
     <div class="bg-white rounded-xl cursor-default max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
         <!-- En-tête du modal -->
-        <div class="flex justify-between items-center p-6 border-b">
+        <div class="flex justify-between items-center p-6 border-b border-gray-200">
             <h2 class="text-xl font-bold text-gray-900" id="modalProductName">Détails du produit</h2>
             <button onclick="closeProductModal()" class="text-gray-500 cursor-pointer hover:text-gray-700 text-2xl">
                 <i class="fas fa-times"></i>
@@ -20,7 +20,7 @@
                 </div>
 
                 <!-- Informations du produit -->
-                <div class="space-y-4">
+                <div class="space-y-6">
                     <!-- Prix -->
                     <div>
                         <h3 class="text-sm font-medium text-gray-600 mb-2">Prix</h3>
@@ -37,26 +37,28 @@
                         </span>
                     </div>
 
-                    <!-- Stock -->
-                    <div>
-                        <h3 class="text-sm font-medium text-gray-600 mb-2">Stock</h3>
-                        <span id="modalProductStock" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                            En stock
-                        </span>
-                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <!-- Stock -->
+                        <div>
+                            <h3 class="text-sm font-medium text-gray-600 mb-2">Stock</h3>
+                            <span id="modalProductStock" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                En stock
+                            </span>
+                        </div>
 
-                    <!-- Statut -->
-                    <div>
-                        <h3 class="text-sm font-medium text-gray-600 mb-2">Statut</h3>
-                        <span id="modalProductStatus" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                            Actif
-                        </span>
+                        <!-- Statut -->
+                        <div>
+                            <h3 class="text-sm font-medium text-gray-600 mb-2">Statut</h3>
+                            <span id="modalProductStatus" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                Actif
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Description complète -->
-            <div class="mt-6" id="modalProductDescriptionContainer">
+            <div class="mt-6 bg-gray-100 p-4 rounded-lg" id="modalProductDescriptionContainer">
                 <h3 class="text-sm font-medium text-gray-600 mb-2">Description</h3>
                 <p id="modalProductDescription" class="text-gray-700 leading-relaxed">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -65,7 +67,7 @@
         </div>
 
         <!-- Pied du modal -->
-        <div class="p-6 border-t bg-gray-50 flex justify-end space-x-3">
+        <div class="p-6 border-t border-gray-200 bg-gray-50 flex justify-end space-x-3">
             <button
                 onclick="closeProductModal()"
                 class="px-4 py-2 cursor-pointer bg-gray-300 hover:bg-gray-400 text-gray-700 rounded-lg transition-all duration-200">
@@ -76,7 +78,6 @@
 </div>
 
 <script>
-    
     // Fonction principale pour actualiser les produits récents
     function refreshRecentProducts(attributName = null) {
         // Afficher un indicateur de chargement (optionnel)

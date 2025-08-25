@@ -58,7 +58,7 @@ if (isset($_SESSION['user']) && $_SESSION['user'] === true && is_token_valid($_S
         </div>
 
         <!-- insertion du modal de produit -->
-        <?php include('./../../includes/produit_list_modal.php'); ?>
+        <?php include('./../../includes/details_produit_modal.php'); ?>
 
         <!-- modal de modification -->
         <?php include('./../../includes/edit_produit_modal.php'); ?>

@@ -200,9 +200,20 @@ function validate_redirect_path($path = null, $default_path = '/admin/dashboard/
     // Liste des chemins autorisés (définis par défaut dans la fonction)
     $allowed_paths = [
         '/admin/dashboard/',
+        '/admin/dashboard/stats/',
+        '/admin/dashboard/reports/',
+        '/admin/dashboard/notifications/',
+        '/admin/dashboard/activities/',
+        '/admin/products/',
         '/admin/products/add/',
         '/admin/products/list/',
         '/admin/products/categories/',
+        '/admin/products/stock/',
+        '/admin/products/promotions/',
+        '/admin/deliverers/',
+        '/admin/orders/',
+        '/admin/profile/',
+        '/admin/settings/',
     ];
 
     // Si pas de path fourni, retourner le défaut
