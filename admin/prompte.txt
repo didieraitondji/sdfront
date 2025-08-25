@@ -1,0 +1,139 @@
+Je veux créer une page dashboard moderne pour la plateforme que je suis entrain de créer.
+C'est une plateforme qui va permettre de faire la vente des boissons et aussi de louer le necessaire pour l'evenementiel.
+
+Voici l'architecture de la base de données : 
+
+CREATE TABLE IF NOT EXISTS users (             id_users INT AUTO_INCREMENT PRIMARY KEY,             first_name VARCHAR(100) NOT NULL,             last_name VARCHAR(100) NOT NULL,             sexe VARCHAR(5) NOT NULL,             email VARCHAR(150) DEFAULT NULL,             telephone VARCHAR(20) NOT NULL,             users_password VARCHAR(255) NOT NULL,             rue VARCHAR(255),             ville VARCHAR(100),             code_postal VARCHAR(20),             pays VARCHAR(100),             last_connexion DATETIME DEFAULT NULL,             notification_option ENUM('sms', 'email', 'none') DEFAULT 'sms',             picture VARCHAR(255) DEFAULT NULL,             user_type ENUM('admin', 'user', 'Particulier', 'Bars, Resto, Buvette') DEFAULT 'user',             is_activated BOOLEAN DEFAULT TRUE,             is_connected BOOLEAN DEFAULT FALSE,             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,             updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,             deleted_at DATETIME DEFAULT NULL         )",         "CREATE TABLE IF NOT EXISTS livreurs (             id_livreur INT AUTO_INCREMENT PRIMARY KEY,             id_users INT NOT NULL,             first_name VARCHAR(100) NOT NULL,             last_name VARCHAR(100) NOT NULL,             sexe VARCHAR(5) NOT NULL,             email VARCHAR(255) DEFAULT NULL,             telephone VARCHAR(20) NOT NULL,             livreurs_password VARCHAR(255) NOT NULL,             rue VARCHAR(255),             ville VARCHAR(100),             code_postal VARCHAR(20),             pays VARCHAR(100),             statut_livreur ENUM('Disponible', 'Occupé') DEFAULT 'Disponible',             last_connexion DATETIME DEFAULT NULL,             notification_option ENUM('sms', 'email', 'none') DEFAULT 'sms',             is_activated BOOLEAN DEFAULT TRUE,             is_connected BOOLEAN DEFAULT FALSE,             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,             updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,             vehicule_type VARCHAR(50),             vehicule_immatriculation VARCHAR(50),             FOREIGN KEY (id_users) REFERENCES users(id_users) ON DELETE CASCADE         )",         "CREATE TABLE IF NOT EXISTS type_produit (             id_type INT AUTO_INCREMENT PRIMARY KEY,             nom_type VARCHAR(255) NOT NULL,             t_description TEXT DEFAULT NULL,             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,             updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP         )",         "CREATE TABLE IF NOT EXISTS categories (             id_categorie INT AUTO_INCREMENT PRIMARY KEY,             id_users INT NOT NULL,             id_type_produit INT NOT NULL,             nom_categorie VARCHAR(255) NOT NULL,             c_description TEXT,             c_image VARCHAR(2083),             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,             statut_categorie ENUM('Active', 'Inactive') DEFAULT 'Active',             FOREIGN KEY (id_users) REFERENCES users(id_users) ON DELETE CASCADE,             FOREIGN KEY (id_type_produit) REFERENCES type_produit(id_type_produit) ON DELETE CASCADE         )",         "CREATE TABLE IF NOT EXISTS produits (             id_produit INT AUTO_INCREMENT PRIMARY KEY,             id_users INT DEFAULT NULL,             nom_produit VARCHAR(255) NOT NULL,             p_description TEXT,             id_categorie INT NOT NULL,             type_produit VARCHAR(255) NOT NULL,             prix DECIMAL(10, 2) NOT NULL,             quantite_stock INT NOT NULL,             statut_produit ENUM('Disponible', 'Indisponible', 'En rupture') DEFAULT 'Disponible',             est_en_promotion BOOLEAN DEFAULT FALSE,             prix_promotionnel DECIMAL(10, 2) DEFAULT NULL,             date_debut_promotion DATETIME DEFAULT NULL,             date_fin_promotion DATETIME DEFAULT NULL,             p_image VARCHAR(255),             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,             updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,             FOREIGN KEY (id_categorie) REFERENCES categories(id_categorie) ON DELETE CASCADE,             FOREIGN KEY (id_users) REFERENCES users(id_users) ON DELETE SET NULL         )",         "CREATE TABLE IF NOT EXISTS commandes (             id_commande INT AUTO_INCREMENT PRIMARY KEY,             id_users INT NOT NULL,             total_commande DECIMAL(10, 2) NOT NULL,             statut_commande ENUM('En attente', 'Payée', 'Annulée', 'Livrée') DEFAULT 'En attente',             moyen_paiement ENUM('Carte bancaire', 'Espèces', 'PayPal', 'Mobile Money') NOT NULL,             est_a_livrer BOOLEAN DEFAULT TRUE,             livraison_creer BOOLEAN DEFAULT FALSE,             rue_livraison VARCHAR(255) NOT NULL,             ville_livraison VARCHAR(100) NOT NULL,             code_postal_livraison VARCHAR(20) DEFAULT NULL,             pays_livraison VARCHAR(100) NOT NULL,             date_commande DATETIME DEFAULT CURRENT_TIMESTAMP,             commentaires TEXT DEFAULT NULL,             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,             updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,             FOREIGN KEY (id_users) REFERENCES users(id_users)         )",         "CREATE TABLE IF NOT EXISTS produits_commandes (             id_commande INT NOT NULL,             id_produit INT NOT NULL,             quantite INT NOT NULL,             prix_unitaire DECIMAL(10, 2) NOT NULL,             total_produit DECIMAL(10, 2) NOT NULL,             PRIMARY KEY (id_commande, id_produit),             FOREIGN KEY (id_commande) REFERENCES commandes(id_commande),             FOREIGN KEY (id_produit) REFERENCES produits(id_produit)         )",         "CREATE TABLE IF NOT EXISTS livraisons (             id_livraison INT AUTO_INCREMENT PRIMARY KEY,             id_commande INT NOT NULL,             id_users INT DEFAULT NULL,             id_livreur INT DEFAULT NULL,             rue VARCHAR(255) NOT NULL,              ville VARCHAR(100) NOT NULL,              code_postal VARCHAR(20) NOT NULL,             pays VARCHAR(100) NOT NULL,              statut_livraison ENUM('En attente', 'En cours', 'Livrée', 'Annulée') DEFAULT 'En attente',              created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,             updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,             date_livraison_estimee DATETIME,              date_livraison_effective DATETIME DEFAULT NULL,              moyen_transport VARCHAR(50),             commentaires TEXT,              FOREIGN KEY (id_commande) REFERENCES commandes(id_commande) ON DELETE CASCADE,             FOREIGN KEY (id_livreur) REFERENCES livreurs(id_livreur) ON DELETE SET NULL,             FOREIGN KEY (id_users) REFERENCES users(id_users) ON DELETE SET NULL         ); 
+
+Je veux faire le dashboard qui va permettre à l'administrateur de visualiser les données de sa plateforme. Faut mettre les menus necessaire pour un administrateur selon l'architecture que je t'ai remis.
+
+Voici les couleurs à utiliser : 
+
+#FFD700
+#0047AB
+#008000
+#A9A9A9
+
+Je veux que le panneau de menu sur la gauche soit reductible et que lors de la réduction, il y ait une animation douce.
+Que le designe soit moderne.
+
+L'entreprise s'appelle : SOUAIBOU DISTRIBUTION
+
+
+
+
+
+
+
+
+Je développe une plateforme appelée SOUAIBOU DISTRIBUTION, qui propose :
+
+La vente de boissons
+
+La location de matériel pour l’événementiel
+
+Je souhaite que tu m’aides à concevoir un dashboard moderne pour l’administrateur. Ce dashboard doit permettre de visualiser et gérer toutes les données de la plateforme.
+
+🎨 Couleurs à respecter (charte graphique) :
+🟡 #FFD700 (or)
+
+🔵 #0047AB (bleu roi)
+
+🟢 #008000 (vert)
+
+⚪ #A9A9A9 (gris foncé)
+
+🧱 Fonctionnalités du dashboard (menus nécessaires)
+Basé sur l’architecture de la base de données fournie, voici les menus principaux à inclure dans le sidebar (menu latéral) :
+
+Tableau de bord (Dashboard) – Vue d’ensemble : stats principales (commandes, produits, utilisateurs, etc.)
+
+Utilisateurs
+
+Liste des utilisateurs
+
+Statistiques de connexion
+
+Filtres par type (admin, user, etc.)
+
+Livreurs
+
+Statut (Disponible, Occupé)
+
+Géolocalisation (si intégrée)
+
+Types & Catégories de Produits
+
+Gestion des types (Boissons, Matériel)
+
+Gestion des catégories
+
+Produits
+
+Liste avec état du stock, statut, promotion
+
+Ajout / modification
+
+Commandes
+
+Suivi des commandes par statut
+
+Détails des produits commandés
+
+Livraisons
+
+Vue des livraisons par statut
+
+Assignation des livreurs
+
+Notifications
+
+Envois SMS / Emails
+
+Paramètres
+
+Préférences admin
+
+Gestion des rôles
+
+Déconnexion
+
+🖥️ UI/UX du Dashboard :
+Sidebar à gauche, réductible avec une animation fluide (smooth transition)
+
+Design moderne, épuré et responsive
+
+Barre supérieure (topbar) avec le nom de l’entreprise, l’avatar de l’admin, les notifications
+
+Cartes et graphiques pour visualiser :
+
+Nombre de commandes
+
+Revenus
+
+Produits en rupture
+
+Livreurs actifs
+
+Statistiques en temps réel (si possible)
+
+📐 Composants UI à inclure :
+Cartes statistiques (nombre de commandes, utilisateurs, produits, etc.)
+
+Graphiques (barres, camemberts) avec [Chart.js ou Recharts]
+
+Tableaux avec filtres et recherche (par produit, client, statut)
+
+Fenêtres modales (ajout/modif produits, catégories)
+
+Popovers et tooltips pour interactions
+
+Système de notifications (en haut à droite ou via toasts)
+
+🧾 Exigences techniques :
+Stack préférée pour le front : HTML + Tailwind CSS + Javascript
+
+Animation douce lors de la réduction du menu latéral
+
+📛 Nom de l'entreprise :
+SOUAIBOU DISTRIBUTION (à mettre en haut du menu ou sur la barre supérieure)
